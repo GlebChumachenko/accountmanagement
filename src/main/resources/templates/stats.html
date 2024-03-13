@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html data-bs-theme="light" lang="ru" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <title>Аналитика</title>
+</head>
+
+<head th:insert="blocks/head :: head"></head>
+
+<body style="background: url(&quot;/img/bg.jpg&quot;) top;">
+
+<div th:insert="blocks/nav :: nav"></div>
+
+<section>
+    <div class="container">
+        <div class="row mb-5">
+            <div class="col-lg-12 text-center">
+                <h2 class="text-uppercase section-heading">Аналитика</h2>
+            </div>
+        </div>
+        <div id="draw1" class="w-100" style="height: 500px"></div>
+        <hr>
+        <div id="draw2" class="w-100" style="height: 500px"></div>
+        <hr>
+        <div id="draw3" class="w-100" style="height: 500px"></div>
+        <hr>
+        <div id="draw4" class="w-100" style="height: 500px"></div>
+
+    </div>
+</section>
+
+
+
+<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+<script th:inline="javascript" type="text/javascript">
+    var accountString = /*[[${accountString}]]*/ [];
+    var accountFloat = /*[[${accountFloat}]]*/ [];
+    var costString = /*[[${costString}]]*/ [];
+    var costFloat = /*[[${costFloat}]]*/ [];
+</script>
+
+<script src="/js/stats.js"></script>
+
+
+</body>
+
+</html>

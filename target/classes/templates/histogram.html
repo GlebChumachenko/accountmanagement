@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html data-bs-theme="light" lang="ru" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <title>Гистограмма</title>
+</head>
+
+<head th:insert="blocks/head :: head"></head>
+
+<body style="background: url(&quot;/img/bg.jpg&quot;) top;">
+
+<div th:insert="blocks/nav :: nav"></div>
+
+<section>
+    <div class="container">
+        <div class="row mb-5">
+            <div class="col-lg-12 text-center">
+                <h2 class="text-uppercase section-heading">Гистограмма</h2>
+            </div>
+        </div>
+        <form action="/histogram/filter" method="get">
+            <div class="row align-items-center">
+                <div class="col-auto"><span class="lead">С</span></div>
+                <div class="col">
+                    <input type="date" class="form-control" required name="start" th:value="${start}">
+                </div>
+                <div class="col-auto"><span class="lead">По</span></div>
+                <div class="col">
+                    <input type="date" class="form-control" required name="finish" th:value="${finish}">
+                </div>
+                <div class="col-auto">
+                    <button type="submit" class="btn btn-info">Фильтр</button>
+                </div>
+            </div>
+        </form>
+        <hr>
+        <div id="draw" class="w-100" style="height: 500px"></div>
+    </div>
+</section>
+
+
+<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+<script th:inline="javascript" type="text/javascript">
+    var dates = /*[[${dates}]]*/ [];
+    var floatAccountBuy = /*[[${floatAccountBuy}]]*/ [];
+    var floatAccountSell = /*[[${floatAccountSell}]]*/ [];
+    var floatCostSalary = /*[[${floatCostSalary}]]*/ [];
+    var floatCostMarketing = /*[[${floatCostMarketing}]]*/ [];
+    var floatCostOther = /*[[${floatCostOther}]]*/ [];
+</script>
+
+<script src="/js/stats.js"></script>
+
+
+</body>
+
+</html>

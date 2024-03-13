@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html data-bs-theme="light" lang="ru" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <title>Отчет о издержках</title>
+</head>
+
+<head th:insert="blocks/head :: head"></head>
+
+<body style="background: url(&quot;/img/bg.jpg&quot;) top;">
+
+<div th:insert="blocks/nav :: nav"></div>
+
+<section>
+    <div class="container bg-white p-3 rounded-5" id="generatePDF">
+        <div class="row mb-5">
+            <div class="col-lg-12 text-center">
+                <h2 class="text-uppercase section-heading">Отчет о издержках</h2>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col text-center"><p class="lead">Название</p></div>
+            <div class="col text-center"><p class="lead">Категория</p></div>
+            <div class="col text-center"><p class="lead">Дата</p></div>
+            <div class="col text-center"><p class="lead">Сумма</p></div>
+        </div>
+        <div class="row" th:each="i : ${costs}">
+            <div class="col text-center">
+                <p th:text="${i.name}"></p>
+            </div>
+            <div class="col text-center">
+                <p th:text="${i.category.name}"></p>
+            </div>
+            <div class="col text-center">
+                <p th:text="${i.date}"></p>
+            </div>
+            <div class="col text-end">
+                <p th:text="${i.sum}"></p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"
+        integrity="sha512-GsLlZN/3F2ErC5ifS5QtgpiJtWd43JWSuIgh7mbzZ8zBps+dvLusV+eNQATqgA/HdeKFVgA5v3S/cIrLF7QnIg=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script>
+    html2pdf(document.getElementById('generatePDF'));
+</script>
+
+
+</body>
+
+</html>

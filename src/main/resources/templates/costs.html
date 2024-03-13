@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html data-bs-theme="light" lang="ru" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <title>Управление издержками</title>
+</head>
+
+<head th:insert="blocks/head :: head"></head>
+
+<body style="background: url(&quot;/img/bg.jpg&quot;) top;">
+
+<div th:insert="blocks/nav :: nav"></div>
+
+<section>
+    <div class="container">
+        <div class="row mb-5">
+            <div class="col-lg-12 text-center">
+                <h2 class="text-uppercase section-heading">Управление издержками</h2>
+            </div>
+        </div>
+        <div class="text-center mb-3">
+            <a href="/costs/report" class="btn btn-info">Отчет</a>
+        </div>
+        <form method="post" action="/costs/add">
+            <div class="row">
+                <div class="col">
+                    <input class="form-control mb-3" type="text" name="name" placeholder="Название" required>
+                </div>
+                <div class="col">
+                    <input class="form-control mb-3" type="number" name="sum" placeholder="Сумма" min="0.01" step="0.01"
+                           required>
+                </div>
+                <div class="col">
+                    <input class="form-control mb-3" type="date" name="date" required>
+                </div>
+                <div class="col-auto">
+                    <select name="category" required class="form-select">
+                        <option th:each="c : ${categories}" th:value="${c}" th:label="${c.name}"></option>
+                    </select>
+                </div>
+                <div class="col-auto">
+                    <button class="btn btn-info" type="submit">Добавить</button>
+                </div>
+            </div>
+        </form>
+        <hr>
+        <form th:each="i : ${costs}" method="post" th:action="${'/costs/' + i.id + '/edit'}">
+            <div class="row">
+                <div class="col">
+                    <input class="form-control mb-3" type="text" name="name" placeholder="Название" required
+                           th:value="${i.name}">
+                </div>
+                <div class="col">
+                    <input class="form-control mb-3" type="number" name="sum" placeholder="Сумма" min="0.01" step="0.01"
+                           required th:value="${i.sum}">
+                </div>
+                <div class="col">
+                    <input class="form-control mb-3" type="date" name="date" required th:value="${i.date}">
+                </div>
+                <div class="col-auto">
+                    <select name="category" required class="form-select">
+                        <option th:each="c : ${categories}" th:value="${c}" th:label="${c.name}"
+                                th:selected="${c == i.category}"></option>
+                    </select>
+                </div>
+                <div class="col-auto">
+                    <button class="btn btn-success" type="submit">Обновить</button>
+                </div>
+                <div class="col-auto">
+                    <a class="btn btn-danger" th:href="${'/costs/' + i.id + '/delete'}">Удалить</a>
+                </div>
+            </div>
+        </form>
+    </div>
+</section>
+
+
+
+</body>
+
+</html>
