@@ -48,8 +48,8 @@ public class AccountsRestCont extends Main {
     public ResponseEntity<Map<String,Accounts>> accountEdit(@RequestParam String name, @RequestParam float sum, @RequestParam String date, @RequestParam AccountCategory category, @PathVariable Long id) {
         Accounts account = accountsRepo.getReferenceById(id);
         account.set(name, sum, date, category);
-        accountsRepo.save(account);
-        return ResponseEntity.ok(Collections.singletonMap("Updated Account: ", accountsRepo.save(account)));
+        Accounts savedAccount = accountsRepo.save(account);
+        return ResponseEntity.ok(Collections.singletonMap("Updated Account: ", savedAccount));
     }
 
     @GetMapping("/{id}/delete")

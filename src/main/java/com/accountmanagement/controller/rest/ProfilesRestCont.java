@@ -22,6 +22,7 @@ public class ProfilesRestCont extends Main {
     @PostMapping("/edit/{id}")
     public ResponseEntity<Users> profileRoleEdit(@PathVariable Long id, @RequestParam Role role) {
         Users user = usersRepo.getReferenceById(id);
+        user.setRole(role);
         return ResponseEntity.ok(usersRepo.save(user));
     }
 }

@@ -1,10 +1,7 @@
 package com.accountmanagement.model;
 
 import com.accountmanagement.model.enums.AccountCategory;
-import lombok.AccessLevel;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 import javax.persistence.*;
 
@@ -12,6 +9,8 @@ import javax.persistence.*;
 @Setter
 @NoArgsConstructor
 @Entity
+@Builder
+@AllArgsConstructor
 public class Accounts {
     @Setter(AccessLevel.NONE)
     @Id

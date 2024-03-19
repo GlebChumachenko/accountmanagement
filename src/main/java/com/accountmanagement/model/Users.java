@@ -1,10 +1,7 @@
 package com.accountmanagement.model;
 
 import com.accountmanagement.model.enums.Role;
-import lombok.AccessLevel;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -19,6 +16,8 @@ import java.util.List;
 @Setter
 @NoArgsConstructor
 @Entity
+@Builder
+@AllArgsConstructor
 public class Users implements UserDetails {
     @Setter(AccessLevel.NONE)
     @Id

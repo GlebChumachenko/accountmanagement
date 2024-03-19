@@ -20,7 +20,7 @@ public class CostsRestCont extends Main {
     private CostsRepo costsRepo;
 
     @GetMapping
-    public ResponseEntity<List<Costs>> costs(Model model) {
+    public ResponseEntity<List<Costs>> costs() {
         return ResponseEntity.ok(costsRepo.findAll());
     }
 
